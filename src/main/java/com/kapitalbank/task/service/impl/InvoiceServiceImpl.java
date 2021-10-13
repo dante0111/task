@@ -84,8 +84,14 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public List<Invoice> issuedAfterDue() {
-        return invoiceRepository.issuedAfterDue();
+    public ResponseEntity<List<Invoice>> issuedAfterDue() {
+        try {
+            List<Invoice> invoices = invoiceRepository.issuedAfterDue();
+            return new ResponseEntity<>(invoices, HttpStatus.OK);
+        }catch (Exception e)
+        {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Override

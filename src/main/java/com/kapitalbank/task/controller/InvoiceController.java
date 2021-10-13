@@ -54,8 +54,7 @@ public class InvoiceController {
     @GetMapping("/expired_invoices")
     public ResponseEntity<List<Invoice>> getExpiredInvoices()
     {
-        List<Invoice> invoices = invoiceService.issuedAfterDue();
-        return new ResponseEntity<>(invoices, HttpStatus.OK);
+        return invoiceService.issuedAfterDue();
     }
 
     @GetMapping("/wrong_date_invoices")

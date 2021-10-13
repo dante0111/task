@@ -20,7 +20,7 @@ public interface InvoiceService {
 
     ResponseEntity<HttpStatus> deleteInvoice(int id);
 
-    List<Invoice> issuedAfterDue();
+    ResponseEntity<List<Invoice>> issuedAfterDue();
 
     List<Invoice> findAll();
 
