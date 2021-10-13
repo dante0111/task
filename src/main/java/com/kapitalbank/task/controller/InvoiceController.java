@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/invoice")
 public class InvoiceController {
 
     private InvoiceService invoiceService;
@@ -21,31 +20,31 @@ public class InvoiceController {
         this.invoiceService = invoiceService;
     }
 
-    @GetMapping("/list")
+    @GetMapping("/invoice/list")
     public ResponseEntity<List<Invoice>> getAllInvoices()
     {
         return invoiceService.getAllInvoices();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/invoice/{id}")
     public ResponseEntity<Invoice> getInvoiceById(@PathVariable int id)
     {
         return invoiceService.getInvoiceById(id);
     }
 
-    @PostMapping("")
+    @PostMapping("/invoice")
     public ResponseEntity<Invoice> createInvoice(@RequestBody Invoice invoice)
     {
         return invoiceService.createInvoice(invoice);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/invoice/{id}")
     public ResponseEntity<Invoice> updateInvoice(@PathVariable int id, @RequestBody Invoice invoice)
     {
         return invoiceService.updateInvoice(id, invoice);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/invoice/{id}")
     public ResponseEntity<HttpStatus> deleteInvoice(@PathVariable int id)
     {
         return invoiceService.deleteInvoice(id);

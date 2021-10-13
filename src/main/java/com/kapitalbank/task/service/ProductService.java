@@ -1,7 +1,9 @@
 package com.kapitalbank.task.service;
 
 import com.kapitalbank.task.dto.BulkProductsDTO;
+import com.kapitalbank.task.dto.DetailDTO;
 import com.kapitalbank.task.dto.HighDemandProductsDTO;
+import com.kapitalbank.task.entity.Detail;
 import com.kapitalbank.task.entity.Payment;
 import com.kapitalbank.task.entity.Product;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,8 @@ public interface ProductService {
     ResponseEntity<List<Product>> getAllProducts();
 
     ResponseEntity<Product> getProductById(int id);
+
+    ResponseEntity<List<DetailDTO>> getProductDetails(int id);
 
     ResponseEntity<Product> createProduct(Product product);
 

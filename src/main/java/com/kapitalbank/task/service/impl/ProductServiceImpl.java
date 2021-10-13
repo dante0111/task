@@ -1,9 +1,8 @@
 package com.kapitalbank.task.service.impl;
 
 import com.kapitalbank.task.dto.BulkProductsDTO;
+import com.kapitalbank.task.dto.DetailDTO;
 import com.kapitalbank.task.dto.HighDemandProductsDTO;
-import com.kapitalbank.task.dto.InvoiceIssuedBeforeOrderDTO;
-import com.kapitalbank.task.entity.Category;
 import com.kapitalbank.task.entity.Product;
 import com.kapitalbank.task.repository.ProductRepository;
 import com.kapitalbank.task.service.ProductService;
@@ -38,12 +37,27 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity<Product> getProductById(int id) {
         Optional<Product> product = productRepository.findById(id);
+
+
         if(product.isPresent())
         {
             return new ResponseEntity<>(product.get(), HttpStatus.OK);
         }else
         {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @Override
+    public ResponseEntity<List<DetailDTO>> getProductDetails(int id) {
+
+        try {
+            List<DetailDTO> details = productRepository.getProductDetails(id);
+
+            return new ResponseEntity<>(details, HttpStatus.OK);
+        }catch (Exception e)
+        {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

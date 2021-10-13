@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/order")
 public class OrderController {
 
     private OrderService orderService;
@@ -23,25 +22,25 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping("/list")
+    @GetMapping("/order/list")
     public ResponseEntity<List<Order>> getAllOrders()
     {
         return orderService.getAllOrders();
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/order/{id}")
     public ResponseEntity<Order> getOrderById(@PathVariable int id)
     {
         return orderService.getOrderById(id);
     }
 
-    @PostMapping("/details/{id}")
+    @PostMapping("/order/details/{id}")
     public ResponseEntity<List<OrderDetailsAndProductName>> getOrderDetailsAndProductName(@PathVariable int id)
     {
         return orderService.getOrderDetailsAndProductName(id);
     }
 
-    @PostMapping("")
+    @PostMapping("/order")
     public ResponseEntity<Map<String, Object>> createOrderByParams(@RequestParam("customer_id") int customer_id,
                                                    @RequestParam("product_id") int product_id,
                                                    @RequestParam("quantity") short quantity)
@@ -49,13 +48,13 @@ public class OrderController {
         return orderService.createOrderByParams(customer_id, product_id, quantity);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/order/{id}")
     public ResponseEntity<Order> updateOrder(@PathVariable int id, @RequestBody Order order)
     {
         return orderService.updateOrder(id, order);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/order/{id}")
     public ResponseEntity<HttpStatus> deleteOrder(@PathVariable int id)
     {
         return orderService.deleteOrder(id);
